@@ -18,7 +18,7 @@
 #include <osgDB/Registry>
 
 
-extern ofCoreEvents 				ofEvents;
+extern ofCoreEvents 		&		ofEvents();
 extern ofEventArgs					voidEventArgs;
 
 
@@ -30,7 +30,7 @@ inline void notifySetup(ofBaseApp* app)
         app->setup();
 
     #ifdef OF_USING_POCO
-        ofNotifyEvent( ofEvents.setup, voidEventArgs );
+        ofNotifyEvent( ofEvents().setup, voidEventArgs );
     #endif
 }
 
@@ -41,7 +41,7 @@ inline void notifyUpdate(ofBaseApp* app)
         app->update();
 
     #ifdef OF_USING_POCO
-        ofNotifyEvent( ofEvents.update, voidEventArgs );
+        ofNotifyEvent( ofEvents().update, voidEventArgs );
     #endif
 }
 
@@ -51,7 +51,7 @@ inline void notifyDraw(ofBaseApp* app)
         app->draw();
 
 #ifdef OF_USING_POCO
-    ofNotifyEvent( ofEvents.draw, voidEventArgs );
+    ofNotifyEvent( ofEvents().draw, voidEventArgs );
 #endif
 }
 
@@ -61,7 +61,7 @@ inline void notifyExit(ofBaseApp* app)
         app->exit();
 
 #ifdef OF_USING_POCO
-    ofNotifyEvent( ofEvents.exit, voidEventArgs );
+    ofNotifyEvent( ofEvents().exit, voidEventArgs );
 #endif
 }
 
@@ -74,7 +74,7 @@ inline void notifyMouseMoved(ofBaseApp* app, int x, int y)
     ofMouseEventArgs mouseEventArgs;
     mouseEventArgs.x = x;
     mouseEventArgs.y = y;
-    ofNotifyEvent( ofEvents.mouseMoved, mouseEventArgs );
+    ofNotifyEvent( ofEvents().mouseMoved, mouseEventArgs );
 #endif
 }
 
@@ -88,7 +88,7 @@ inline void notifyMouseDragged(ofBaseApp* app, int x, int y, int button)
     mouseEventArgs.x = x;
     mouseEventArgs.y = y;
     mouseEventArgs.button = button;
-    ofNotifyEvent( ofEvents.mouseDragged, mouseEventArgs );
+    ofNotifyEvent( ofEvents().mouseDragged, mouseEventArgs );
 #endif
 }
 
@@ -102,7 +102,7 @@ inline void notifyMousePressed(ofBaseApp* app, int x, int y, int button)
     mouseEventArgs.x = x;
     mouseEventArgs.y = y;
     mouseEventArgs.button = button;
-    ofNotifyEvent( ofEvents.mousePressed, mouseEventArgs );
+    ofNotifyEvent( ofEvents().mousePressed, mouseEventArgs );
 #endif
 }
 
@@ -116,7 +116,7 @@ inline void notifyMouseReleased(ofBaseApp* app, int x, int y, int button)
     mouseEventArgs.x = x;
     mouseEventArgs.y = y;
     mouseEventArgs.button = button;
-    ofNotifyEvent( ofEvents.mouseReleased, mouseEventArgs );
+    ofNotifyEvent( ofEvents().mouseReleased, mouseEventArgs );
 #endif
 }
 
@@ -128,7 +128,7 @@ inline void notifyKeyPressed(ofBaseApp* app, int key)
 #ifdef OF_USING_POCO
     ofKeyEventArgs args;
     args.key = key;
-    ofNotifyEvent( ofEvents.keyPressed, args );
+    ofNotifyEvent( ofEvents().keyPressed, args );
 #endif
 }
 
@@ -140,7 +140,7 @@ inline void notifyKeyReleased(ofBaseApp* app, int key)
 #ifdef OF_USING_POCO
     ofKeyEventArgs args;
     args.key = key;
-    ofNotifyEvent( ofEvents.keyReleased, args );
+    ofNotifyEvent( ofEvents().keyReleased, args );
 #endif
 }
 
@@ -153,7 +153,7 @@ inline void notifyWindowResized(ofBaseApp* app, int width, int height)
     ofResizeEventArgs args;
     args.width = width;
     args.height = height;
-    ofNotifyEvent( ofEvents.windowResized, args );
+    ofNotifyEvent( ofEvents().windowResized, args );
 #endif
 }
 
