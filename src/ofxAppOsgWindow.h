@@ -20,57 +20,61 @@ namespace osgViewer {
 class ofxAppOsgWindow : public ofAppBaseWindow {
 public:
     ofxAppOsgWindow();
-    
+
     virtual void setupOpenGL(int w, int h, int screenMode);
 	virtual void initializeWindow();
 	virtual void runAppViaInfiniteLoop(ofBaseApp * appPtr);
-    
+
 	virtual void hideCursor();
 	virtual void showCursor();
-    
+
 	virtual void	setWindowPosition(int x, int y);
 	virtual void	setWindowShape(int w, int h);
-    
+
 	virtual int		getFrameNum() { return _frameNumber; }
 	virtual	float	getFrameRate() {return _frameRate; }
 	virtual double  getLastFrameTime(){ return _lastFrameTime; }
-    
+
 	virtual ofPoint	getWindowPosition();
 	virtual ofPoint	getWindowSize();
 	virtual ofPoint	getScreenSize();
-    
+
 	virtual void	setFrameRate(float targetRate){}
 	virtual void	setWindowTitle(string title);
-    
+
 	virtual int		getWindowMode() {return 0;}
-    
+
 	virtual void	setFullscreen(bool fullscreen);
 	virtual void	toggleFullscreen();
-    
+
 	virtual void	enableSetupScreen(){ _setupScreen = true; }
 	virtual void	disableSetupScreen(){ _setupScreen = false; }
-    
+
     inline bool setupScreenEnabled() const { return _setupScreen; }
-    
+
+    virtual int		getWidth(){ return _w; }
+	virtual int		getHeight(){ return _h; }
+
+
 protected:
-    
+
     void setView(osgViewer::View* view) { _view = view; }
     osgViewer::View* getView() { return _view; }
     ofBaseApp* getApp() { return _app; }
     osgViewer::GraphicsWindow* getGraphicsWindow();
-    
+
     osg::ref_ptr<osgViewer::View> _view;
     ofBaseApp*                     _app;
     unsigned int _w, _h;
-    bool    _setupScreen;
-    
+    bool    _setupScreen, _fullscreen;
+
     int _frameNumber;
     float _frameRate;
     double _lastFrameTime;
-    
+
     friend class ofCameraPreDrawCallback;
     int _screenMode;
-    
+
     osg::ref_ptr<osg::GraphicsContext::Traits> _savedTraits;
 
 };
